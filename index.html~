@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <!--- styles --->
+   <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+
+    <!--- libraries --->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="scripts/lib/spotter.js"></script>
+
+    <!--- program --->
+    <script src="scripts/src/script.js"></script>
+    
     <title> Project 2 </title>
   </head>
     <body>
-    
-    
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="row">
+      <div class="span16">
+       <div class="span9 offset6">
+        <label> Text </label>
+        <input type="text" class="span3" placeholder="Enter search here">
+        <button type="submit" class="btn">Submit</button>
+        </form>
+      </div>
+     </div>
+    </div>
     </body>
     
 </html>
