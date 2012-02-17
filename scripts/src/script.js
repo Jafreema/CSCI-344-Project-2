@@ -2,12 +2,17 @@
  * This is the entry point for our JavaScript program
  */
 function main() {
+	
+	var search_object;
     //your code goes here
     $("#submit_btn").click(function() {
-    		    alert("hello world!");
+    		    search_object = $('input:text').val();
     });
    // alert("hello world!");
 
+   $('.carousel').carousel({
+  interval: 2000
+  });
 
     //your tasks
 
@@ -21,7 +26,7 @@ function main() {
     var color = 'red';
     
      var s = new Spotter("twitter.search",
-     	     {q:"obama", period:120},
+     	     {q:search_object, period:120},
      	     {buffer:true, bufferTimeout:750});
      
      s.register(function(tweet) {
@@ -42,10 +47,12 @@ function main() {
      	    color = 'blue';
      	  }
      	
-    object.hide();
-    $("#tweets").prepend(object);
-    object.slideDown();
- 
+    //object.hide();
+    object_array.push(object);
+    for(var i = 0; i <= object_array.length; i++){
+    $(".item").prepend(object);
+    //object.slideDown();
+    }
     
     //Check to see if tweet has the word 'love'
     
@@ -53,8 +60,8 @@ function main() {
        love_count = love_count+1;
     }
     
-    $("#tweets p:gt(9)").fadeOut(200, function() {
-    		    $("#tweets p:gt(9)").remove(); 
+    $(".item p:gt(9)").fadeOut(200, function() {
+    		    $(".item p:gt(9)").remove(); 
     });
     
     

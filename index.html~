@@ -6,10 +6,12 @@
 
     <!--- libraries --->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="scripts/lib/spotter.js"></script>
+    <script src="scripts/lib/spotter-0.2.5.js"></script>
 
     <!--- program --->
     <script src="scripts/src/script.js"></script>
+     <script src="bootstrap/js/bootstrap.js"></script>
+     <script src="/scripts/lib/bootstrap-carousel.js"></script>
     
     <title> Project 2 </title>
   </head>
@@ -20,15 +22,33 @@
     <br />
     <div class="row">
       <div class="span16">
-       <div class="span9 offset6">
-        <label> Text </label>
-        <input type="text" class="span3" placeholder="Enter search here">
-        <button type="submit" class="btn">Submit</button>
-        </form>
-      </div>
+     
+        <div class="span9 offset6">
+          
+          <label> Text </label>
+          <input type="text" class="span3" placeholder="Enter search here">
+          <button type="submit" class="btn" id="submit_btn">Submit</button>
+          
+          </form>
+        </div>
      </div>
     </div>
-    </body>
+    <div id="tweets">
+    	<div class="carousel">
+    		<!-- Carousel items -->
+    		<div class="carousel-inner">
+    			<div class="item">
+    			
+    			</div>
+    		</div>
+  		<!-- Carousel nav -->
+  		<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  		<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+  	</div>
     
+    </div>
+    
+    </body>
+   
 </html>
 
