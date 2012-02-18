@@ -3,13 +3,16 @@
  */
 function main() {
 	
-	var search_object;
+	 var search_object = "";
     //your code goes here
-    $("#submit_btn").click(function() {
+    $("button:#submit_btn").click(function() {
+    		    alert($('input:text').val());
     		    search_object = $('input:text').val();
     });
    // alert("hello world!");
 
+  
+   
    $('.carousel').carousel({
   interval: 2000
   });
@@ -20,6 +23,8 @@ function main() {
     var count = 0;
     
     var love_count = 0;
+    
+    var hate_count = 0;
     
     var object_array = [];
     
@@ -40,28 +45,25 @@ function main() {
      	
      	count ++;
      	
-     	if(count %2 === 0){
-     	  color = 'red';
-     	}
-     	  else{
-     	    color = 'blue';
-     	  }
      	
-    //object.hide();
+    object.hide();
     object_array.push(object);
     for(var i = 0; i <= object_array.length; i++){
-    $(".item").prepend(object);
-    //object.slideDown();
+    $("#tweets").prepend(object);
+    object.slideDown();
     }
     
     //Check to see if tweet has the word 'love'
     
     if(tweet.text.match(/love/i)){
        love_count = love_count+1;
+       if(love_cout >= 5){
+       	  alert("man people really love " + search_object);
+       }
     }
     
-    $(".item p:gt(9)").fadeOut(200, function() {
-    		    $(".item p:gt(9)").remove(); 
+    $("#tweets p:gt(9)").fadeOut(200, function() {
+    		    $("#tweets p:gt(9)").remove(); 
     });
     
     
