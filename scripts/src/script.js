@@ -24,7 +24,7 @@ function main() {
      	     {buffer:true, bufferTimeout:750});
      
      s.register(function(tweet) {
-     	//2. Add profile images (tweet.profile_image_url)
+     
      	 	
      	
      	
@@ -42,60 +42,72 @@ function main() {
     object.slideDown();
     }
     
-    //Check to see if tweet has the word 'love'
+        
+    if(object_array.length> 8){
+    	 var object_to_remove =  object_array.shift();
+    	 object_to_remove.remove();
+    };
     
+    //Check to see if tweet has the word 'love'
+   // $(".love_info").append("<p> See how many people love" + $('input:text').val() +"</p>");
     if(tweet.text.match(/love/i)){
        love_count = love_count+1;
-       if(love_count >= 3){
-       	       alert("man people really love " + $('input:text').val());
+       if(love_count >= 0){
+       	       $(function() {      
+            var Lovecounter = setInterval(function() {
+                if (love_count < 20) {
+                    $('#loveCounter').html(love_count);
+                }
+            }, 1000);
+        });   
+       	       
+       	
        }
     }
        
-         if(tweet.text.match(/hate/i)){
+     
+    
+       // See if tweet has the word hate
+      if(tweet.text.match(/hate/i)) {
        hate_count = hate_count+1;
-       if(hate_count >= 3){
-       	       alert("man people really hate " + $('input:text').val());
+       if(hate_count >= 0){
+       	     $(function() {
+            
+            var hateCounter = setInterval(function() {
+                if (hate_count < 20) {
+                    $('#hateCounter').html(hate_count);
+                }
+                
+            }, 1000);
+        });   
+             //alert("man people really hate " + $('input:text').val());
        }
      }
-    
-    $("#tweets p:gt(9)").fadeOut(200, function() {
-    		    $("#tweets p:gt(9)").remove(); 
-    });
-    
-    
- /*   if(count > 10){
-    
-      var object_to_r = $("#tweets p:last-child");
-      object_to_r.fadeOut(200, function(){
-        object_to_r.remove();
-      });
-    
-    }*?/
-    
-    /*object_array.push(object);
-    
-    if(object_array.length> 11){
-    	 var object_to_remove =  object_array.shift();
-    	 object_to_remove.remove();
-    }*/
-     
      
      });
+     
+    
+   // $("#tweets p:gt(7)").fadeOut(200, function() {
+    	//	    $("#tweets p:gt(7)").remove(); 
+    //});
+    
+   
+    
+    
+
+     
+     
+     
      
      s.start();
     
        
-    //3. Make the tweets occur so the most recent are at the top
-    
- 
-    
-    //4. Make the tweets slide down
-    //5. Alternate the colors or the background of the tweets
-    //6. Show a maximum of 10 tweets at a time (remove old tweets from the dom)
 
-
-}
+     }
 $(document).ready(function() {
 		
 main();
+ $(".love_info").append("<p> See how many people love" + $('input:text').val() +" below" + "</p>");
+ $(".hate_info").append("<p> See how many people hate" + $('input:text').val() +" below" + "</p>");
+
 });
