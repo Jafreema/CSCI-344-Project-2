@@ -9,17 +9,7 @@ function main() {
     		    alert($('input:text').val());
     		    search_object = $('input:text').val();
     });
-   // alert("hello world!");
 
-  
-   
-   $('.carousel').carousel({
-  interval: 2000
-  });
-
-    //your tasks
-
-    //1. Create a spotter and get it to insert tweets into the DOM
     var count = 0;
     
     var love_count = 0;
@@ -28,10 +18,9 @@ function main() {
     
     var object_array = [];
     
-    var color = 'red';
     
      var s = new Spotter("twitter.search",
-     	     {q:search_object, period:120},
+     	     {q:'beiber', period:120},
      	     {buffer:true, bufferTimeout:750});
      
      s.register(function(tweet) {
@@ -41,7 +30,7 @@ function main() {
      	
      	var profile_image = "<img src='"+tweet.profile_image_url+"'/>"
      	
-     	var object = $("<p  class="+ color + ">" + profile_image + tweet.text + "</p>");
+     	var object = $("<p>" + profile_image + tweet.text + "</p>");
      	
      	count ++;
      	
@@ -57,10 +46,17 @@ function main() {
     
     if(tweet.text.match(/love/i)){
        love_count = love_count+1;
-       if(love_cout >= 5){
-       	  alert("man people really love " + search_object);
+       if(love_count >= 3){
+       	       alert("man people really love " + $('input:text').val());
        }
     }
+       
+         if(tweet.text.match(/hate/i)){
+       hate_count = hate_count+1;
+       if(hate_count >= 3){
+       	       alert("man people really hate " + $('input:text').val());
+       }
+     }
     
     $("#tweets p:gt(9)").fadeOut(200, function() {
     		    $("#tweets p:gt(9)").remove(); 
