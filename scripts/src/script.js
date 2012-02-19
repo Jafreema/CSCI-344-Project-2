@@ -2,13 +2,18 @@
  * This is the entry point for our JavaScript program
  */
 function main() {
-	
-	 var search_object = "";
+	var loveInfo;
+	var hateInfo;
+	var textbox_string;
     //your code goes here
     $("button:#submit_btn").click(function() {
-    		    alert($('input:text').val());
-    		    search_object = $('input:text').val();
-    });
+    	loveInfo = "<p> See how many people love " + $('input:text').val() +" below" + "</p>"
+    	hateInfo ="<p> See how many people hate " + $('input:text').val() +" below" + "</p>"
+    	textbox_string = $('input:text').val();	    
+     $(".love_info").append(loveInfo);
+     $(".hate_info").append(hateInfo);		    
+    		    
+   // });
 
     var count = 0;
     
@@ -20,7 +25,7 @@ function main() {
     
     
      var s = new Spotter("twitter.search",
-     	     {q:'beiber', period:120},
+     	     {q:textbox_string, period:120},
      	     {buffer:true, bufferTimeout:750});
      
      s.register(function(tweet) {
@@ -102,12 +107,11 @@ function main() {
      s.start();
     
        
-
+});
      }
 $(document).ready(function() {
 		
 main();
- $(".love_info").append("<p> See how many people love" + $('input:text').val() +" below" + "</p>");
- $(".hate_info").append("<p> See how many people hate" + $('input:text').val() +" below" + "</p>");
+
 
 });
