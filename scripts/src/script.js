@@ -23,18 +23,18 @@ function main() {
     
     var hate_count = 0;
     
-    
-    
-    
-     var s = new Spotter("twitter.search",
-     	     {q:textbox_string, period:120},
-     	     {buffer:true, bufferTimeout:750});
-     if(buttonCount >=1){
+    if(buttonCount >=1){
      	 
      	     loveCount = 0;
      	     hateCount = 0;
      	     s.stop();
      };
+    
+    
+     var s = new Spotter("twitter.search",
+     	     {q:textbox_string, period:120},
+     	     {buffer:true, bufferTimeout:750});
+     
      s.register(function(tweet) {
      
      	 	
@@ -65,12 +65,15 @@ function main() {
     if(tweet.text.match(/love/i)){
        love_count = love_count+1;
        if(love_count >= 0){
+      	 if($("button:#submit_btn").click(function() {
+       			love_count = 0;
+       	   })); 	       
        	       
        	       // modified from a similar counter found on devcurry.com
        	       $(function() {      
             var Lovecounter = setInterval(function() {
                 if (love_count < 20) {
-                    $('#loveCounter').html("<p>"+love_count+"</p>");
+                    $('#loveCounter').html("<h3>"+love_count+"</h3>");
                 }
             }, 1000);
         });   
@@ -93,7 +96,7 @@ function main() {
             
             var hateCounter = setInterval(function() {
                 if (hate_count < 20) {
-                    $('#hateCounter').html(hate_count);
+                    $('#hateCounter').html("<h3>"+hate_count+"</h3>");
                 }
                 
             }, 1000);
