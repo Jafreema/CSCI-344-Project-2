@@ -3,16 +3,18 @@
  */
 function main() {
 	var loveInfo;
+	var buttonCount;
 	var hateInfo;
 	var textbox_string;
     //your code goes here
     $("button:#submit_btn").click(function() {
+    		    buttonCount++;
     	loveInfo = "<p> See how many people love " + $('input:text').val() +" below" + "</p>"
     	hateInfo ="<p> See how many people hate " + $('input:text').val() +" below" + "</p>"
     	textbox_string = $('input:text').val();	    
-     $(".love_info").append(loveInfo);
-     $(".hate_info").append(hateInfo);		    
-    		    
+     $(".love_info").prepend(loveInfo);
+     $(".hate_info").prepend(hateInfo);		    
+    		
    // });
 
     var count = 0;
@@ -21,13 +23,18 @@ function main() {
     
     var hate_count = 0;
     
-    var object_array = [];
+    
     
     
      var s = new Spotter("twitter.search",
      	     {q:textbox_string, period:120},
      	     {buffer:true, bufferTimeout:750});
-     
+     if(buttonCount >=1){
+     	 
+     	     loveCount = 0;
+     	     hateCount = 0;
+     	     s.stop();
+     };
      s.register(function(tweet) {
      
      	 	
@@ -41,31 +48,33 @@ function main() {
      	
      	
     object.hide();
-    object_array.push(object);
-    for(var i = 0; i <= object_array.length; i++){
     $("#tweets").prepend(object);
     object.slideDown();
-    }
     
-        
-    if(object_array.length> 8){
-    	 var object_to_remove =  object_array.shift();
-    	 object_to_remove.remove();
-    };
-    
+    $(".love_info p:gt(0)").fadeOut(200, function() {
+	    $(".love_info p:gt(0)").remove();
+	});
+    $(".hate_info p:gt(0)").fadeOut(200, function() {
+	    $(".hate_info p:gt(0)").remove();
+	});
+    $("#tweets p:gt(5)").fadeOut(200, function() {
+	    $("#tweets p:gt(5)").remove();
+	});
     //Check to see if tweet has the word 'love'
    // $(".love_info").append("<p> See how many people love" + $('input:text').val() +"</p>");
     if(tweet.text.match(/love/i)){
        love_count = love_count+1;
        if(love_count >= 0){
+       	       
+       	       // modified from a similar counter found on devcurry.com
        	       $(function() {      
             var Lovecounter = setInterval(function() {
                 if (love_count < 20) {
-                    $('#loveCounter').html(love_count);
+                    $('#loveCounter').html("<p>"+love_count+"</p>");
                 }
             }, 1000);
         });   
-       	       
+                
        	
        }
     }
@@ -76,7 +85,11 @@ function main() {
       if(tweet.text.match(/hate/i)) {
        hate_count = hate_count+1;
        if(hate_count >= 0){
-       	     $(function() {
+       	          // modified from a similar counter found on devcurry.com
+       	if($("button:#submit_btn").click(function() {
+       			hate_count = 0;
+       	}));
+       	       $(function() {
             
             var hateCounter = setInterval(function() {
                 if (hate_count < 20) {
@@ -89,19 +102,8 @@ function main() {
        }
      }
      
+     
      });
-     
-    
-   // $("#tweets p:gt(7)").fadeOut(200, function() {
-    	//	    $("#tweets p:gt(7)").remove(); 
-    //});
-    
-   
-    
-    
-
-     
-     
      
      
      s.start();
@@ -112,6 +114,4 @@ function main() {
 $(document).ready(function() {
 		
 main();
-
-
 });
