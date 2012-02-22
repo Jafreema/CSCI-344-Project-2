@@ -2,101 +2,118 @@
  * This is the entry point for our JavaScript program
  */
 function main() {
-	
-	var search_object;
+	var loveInfo;
+	var buttonCount;
+	var hateInfo;
+	var textbox_string;
     //your code goes here
-    $("#submit_btn").click(function() {
-    		    search_object = $('input:text').val();
-    });
-   // alert("hello world!");
+    $("button:#submit_btn").click(function() {
+    		    buttonCount++;
+    	loveInfo = "<p> See how many people love " + $('input:text').val() +" below" + "</p>"
+    	hateInfo ="<p> See how many people hate " + $('input:text').val() +" below" + "</p>"
+    	textbox_string = $('input:text').val();	    
+     $(".love_info").prepend(loveInfo);
+     $(".hate_info").prepend(hateInfo);		    
+    		
+   // });
 
-   $('.carousel').carousel({
-  interval: 2000
-  });
-
-    //your tasks
-
-    //1. Create a spotter and get it to insert tweets into the DOM
     var count = 0;
     
     var love_count = 0;
     
-    var object_array = [];
+    var hate_count = 0;
     
-    var color = 'red';
+    if(buttonCount >=1){
+     	 
+     	     loveCount = 0;
+     	     hateCount = 0;
+     	     s.stop();
+     };
+    
     
      var s = new Spotter("twitter.search",
-     	     {q:search_object, period:120},
+     	     {q:textbox_string, period:120},
      	     {buffer:true, bufferTimeout:750});
      
      s.register(function(tweet) {
-     	//2. Add profile images (tweet.profile_image_url)
+     
      	 	
      	
      	
      	var profile_image = "<img src='"+tweet.profile_image_url+"'/>"
      	
-     	var object = $("<p  class="+ color + ">" + profile_image + tweet.text + "</p>");
+     	var object = $("<p>" + profile_image + tweet.text + "</p>");
      	
      	count ++;
      	
-     	if(count %2 === 0){
-     	  color = 'red';
-     	}
-     	  else{
-     	    color = 'blue';
-     	  }
      	
-    //object.hide();
-    object_array.push(object);
-    for(var i = 0; i <= object_array.length; i++){
-    $(".item").prepend(object);
-    //object.slideDown();
-    }
+    object.hide();
+    $("#tweets").prepend(object);
+    object.slideDown();
     
+    $(".love_info p:gt(0)").slideUp(100, function() {
+	    $(".love_info p:gt(0)").remove();
+	});
+    $(".hate_info p:gt(0)").slideUp(100, function() {
+	    $(".hate_info p:gt(0)").remove();
+	});
+    $("#tweets p:gt(5)").fadeOut(200, function() {
+	    $("#tweets p:gt(5)").remove();
+	});
     //Check to see if tweet has the word 'love'
-    
+   // $(".love_info").append("<p> See how many people love" + $('input:text').val() +"</p>");
     if(tweet.text.match(/love/i)){
        love_count = love_count+1;
+       if(love_count >= 0){
+      	 if($("button:#submit_btn").click(function() {
+       			love_count = 0;
+       	   })); 	       
+       	       
+       	       // modified from a similar counter found on devcurry.com
+       	       $(function() {      
+            var Lovecounter = setInterval(function() {
+                if (love_count < 100) {
+                    $('#loveCounter').html("<h3>"+love_count+"</h3>");
+                }
+            });
+        });   
+                
+       	
+       }
     }
+       
+     
     
-    $(".item p:gt(9)").fadeOut(200, function() {
-    		    $(".item p:gt(9)").remove(); 
-    });
-    
-    
- /*   if(count > 10){
-    
-      var object_to_r = $("#tweets p:last-child");
-      object_to_r.fadeOut(200, function(){
-        object_to_r.remove();
-      });
-    
-    }*?/
-    
-    /*object_array.push(object);
-    
-    if(object_array.length> 11){
-    	 var object_to_remove =  object_array.shift();
-    	 object_to_remove.remove();
-    }*/
+       // See if tweet has the word hate
+      if(tweet.text.match(/hate/i)) {
+       hate_count = hate_count+1;
+       if(hate_count >= 0){
+       	          // modified from a similar counter found on devcurry.com
+       	if($("button:#submit_btn").click(function() {
+       			hate_count = 0;
+       	}));
+       	       $(function() {
+            
+            var hateCounter = setInterval(function() {
+                if (hate_count < 100) {
+                    $('#hateCounter').html("<h3>"+hate_count+"</h3>");
+                }
+                
+            });
+        });   
+             //alert("man people really hate " + $('input:text').val());
+       }
+     }
      
      
      });
      
+     
      s.start();
     
        
-    //3. Make the tweets occur so the most recent are at the top
-    
- 
-    
-    //4. Make the tweets slide down
-    //5. Alternate the colors or the background of the tweets
-    //6. Show a maximum of 10 tweets at a time (remove old tweets from the dom)
-
-
-}
+});
+     }
 $(document).ready(function() {
 		
 main();

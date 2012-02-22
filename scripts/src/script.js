@@ -9,8 +9,8 @@ function main() {
     //your code goes here
     $("button:#submit_btn").click(function() {
     		    buttonCount++;
-    	loveInfo = "<p> See how many people love " + $('input:text').val() +" below" + "</p>"
-    	hateInfo ="<p> See how many people hate " + $('input:text').val() +" below" + "</p>"
+    	loveInfo = "<p> This many people love " + $('input:text').val()  + "</p>"
+    	hateInfo ="<p> This many people hate " + $('input:text').val()  + "</p>"
     	textbox_string = $('input:text').val();	    
      $(".love_info").prepend(loveInfo);
      $(".hate_info").prepend(hateInfo);		    
@@ -25,8 +25,6 @@ function main() {
     
     if(buttonCount >=1){
      	 
-     	     loveCount = 0;
-     	     hateCount = 0;
      	     s.stop();
      };
     
@@ -51,14 +49,14 @@ function main() {
     $("#tweets").prepend(object);
     object.slideDown();
     
-    $(".love_info p:gt(0)").fadeOut(200, function() {
+    $(".love_info p:gt(0)").slideUp(100, function() {
 	    $(".love_info p:gt(0)").remove();
 	});
-    $(".hate_info p:gt(0)").fadeOut(200, function() {
+    $(".hate_info p:gt(0)").slideUp(100, function() {
 	    $(".hate_info p:gt(0)").remove();
 	});
-    $("#tweets p:gt(5)").fadeOut(200, function() {
-	    $("#tweets p:gt(5)").remove();
+    $("#tweets p:gt(4)").fadeOut(200, function() {
+	    $("#tweets p:gt(4)").remove();
 	});
     //Check to see if tweet has the word 'love'
    // $(".love_info").append("<p> See how many people love" + $('input:text').val() +"</p>");
@@ -72,10 +70,10 @@ function main() {
        	       // modified from a similar counter found on devcurry.com
        	       $(function() {      
             var Lovecounter = setInterval(function() {
-                if (love_count < 20) {
+                if (love_count < 100) {
                     $('#loveCounter').html("<h3>"+love_count+"</h3>");
                 }
-            }, 1000);
+            });
         });   
                 
        	
@@ -95,11 +93,11 @@ function main() {
        	       $(function() {
             
             var hateCounter = setInterval(function() {
-                if (hate_count < 20) {
+                if (hate_count < 100) {
                     $('#hateCounter').html("<h3>"+hate_count+"</h3>");
                 }
                 
-            }, 1000);
+            });
         });   
              //alert("man people really hate " + $('input:text').val());
        }
